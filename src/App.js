@@ -1,18 +1,10 @@
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
 import './App.css';
 import DigitButton from './DigitButton';
 import ClearButton from './ClearButton';
 import OperationButton from './OperationButton';
 import EvaluateButton from './EvaluateButton';
 import DeleteButton from './DeleteButton';
-
-const ACTIONS = {
-  ADDDIGIT: 'addDigit',
-  ADDOPERATION: 'addOperation',
-  CLEAR: 'clear',
-  DELETEDIGIT: 'deleteDigit',
-  EVALUATE: 'evaluate'
-}
 
 function reducer(state, { type, payload }) { //action includes type & payload
   switch (type) {
@@ -69,6 +61,8 @@ function reducer(state, { type, payload }) { //action includes type & payload
 
         }
       }
+    default:
+      return state
   }
 }
 
@@ -92,6 +86,8 @@ function evaluate({ currentEntry, previousEntry, operation }) {
       break
     case "%":
       result = previous % current
+      break
+    default:
       break
   }
   return result.toString()
